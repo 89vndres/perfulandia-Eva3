@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/mensajes")
+@RequestMapping("api/mensajes")
 @CrossOrigin(origins = "http://localhost:3000") // Permite conexión desde React
 public class MensajeController {
 

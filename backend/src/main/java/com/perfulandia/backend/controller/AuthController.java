@@ -21,21 +21,21 @@ public class AuthController {
     // --- LOGIN CON BASE DE DATOS ---
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        // 1. Buscar usuario en la BD por email
+       
         Optional<Usuario> userOpt = usuarioRepository.findByEmail(request.getEmail());
 
-        // 2. Validar si existe y si la contraseña coincide
+        
         if (userOpt.isPresent()) {
             Usuario usuario = userOpt.get();
 
             if (usuario.getPassword().equals(request.getPassword())) {
                 // ¡LOGIN EXITOSO!
                 LoginResponse response = new LoginResponse();
-                response.setToken("TOKEN_REAL_" + usuario.getId()); // Token simulado pero único
+                response.setToken("TOKEN_REAL_" + usuario.getId()); 
 
                 LoginResponse.UserDto userDto = new LoginResponse.UserDto();
                 userDto.setEmail(usuario.getEmail());
-                userDto.setRole(usuario.getRole()); // Usamos el rol real de la BD
+                userDto.setRole(usuario.getRole()); 
 
                 response.setUser(userDto);
                 return ResponseEntity.ok(response);
@@ -63,8 +63,7 @@ public class AuthController {
         nuevoUsuario.setPassword(password);
         nuevoUsuario.setNombre(nombre);
 
-        // TRUCO PARA DEMO: Si el email contiene "admin", le damos rol de admin automáticamente.
-        // En un sistema real esto no se hace así, pero para tu tarea es muy útil.
+
         if (email.contains("admin")) {
             nuevoUsuario.setRole("admin");
         } else {

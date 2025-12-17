@@ -1,108 +1,40 @@
 package com.perfulandia.backend.model;
 
+
+
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Table(name = "perfume")
+@Table(name = "perfumes")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Perfume {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
     private String marca;
-    private Double precio;
 
-    // CORRECCIÓN IMPORTANTE: Aumentamos el límite de caracteres para la URL
-    @Column(length = 1000) 
-    private String imagen;
+    @Column(nullable = false)
+    private Integer precio;
 
-    // Cambiamos el nombre en la DB a 'categoria' para evitar conflictos con palabras reservadas
-    @Column(name = "categoria")
-    private String category;
-
-    private String aroma;
+    @Column(nullable = false)
     private Integer stock;
 
-    // Constructor vacío (Obligatorio para JPA)
-    public Perfume() {
-    }
+    @Column(nullable = false)
+    private String imagenUrl;
 
-    // Constructor con campos
-    public Perfume(String nombre, String marca, Double precio, String imagen, String category, String aroma, Integer stock) {
-        this.nombre = nombre;
-        this.marca = marca;
-        this.precio = precio;
-        this.imagen = imagen;
-        this.category = category;
-        this.aroma = aroma;
-        this.stock = stock;
-    }
+    @Column(nullable = false)
+    private String genero;
 
-    // === GETTERS Y SETTERS MANUALES ===
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getAroma() {
-        return aroma;
-    }
-
-    public void setAroma(String aroma) {
-        this.aroma = aroma;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
+    @Column(nullable = false)
+    private String aroma;
 }

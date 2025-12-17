@@ -24,12 +24,10 @@ public class OrdenController {
     public List<Orden> misCompras(@RequestParam String email) {
         return ordenRepository.findByUsuarioEmail(email);
     }
-    // ... otros métodos ...
-
-    // GET: Obtener TODAS las órdenes (Solo para Admin)
+   
     @GetMapping("/todas")
     public List<Orden> todasLasOrdenes() {
-        // En un caso real, validarías aquí que el usuario sea admin usando el token
+        
         return ordenRepository.findAll();
     }
 
@@ -39,10 +37,10 @@ public class OrdenController {
         orden.setFecha(new Date());
         orden.setEstado("Pagado");
 
-        // Vincular los detalles con la orden//
+        
         for (DetalleOrden detalle : orden.getDetalles()) {
             detalle.setOrden(orden);
-            // DESCONTAR STOCK//
+            
             Perfume p = perfumeRepository.findById(detalle.getPerfumeId()).orElse(null);
             if (p != null) {
                 int nuevoStock = p.getStock() - detalle.getCantidad();

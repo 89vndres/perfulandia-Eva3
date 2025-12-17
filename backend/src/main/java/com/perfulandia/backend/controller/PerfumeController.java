@@ -1,51 +1,39 @@
 package com.perfulandia.backend.controller;
 
 import com.perfulandia.backend.model.Perfume;
-import com.perfulandia.backend.repository.PerfumeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.perfulandia.backend.service.PerfumeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/perfume")
+@RequestMapping("/perfumes")
 @CrossOrigin(origins = "http://localhost:3000")
 public class PerfumeController {
 
-    @Autowired
-    private PerfumeRepository perfumeRepository;
+    private final PerfumeService perfumeService;
 
-    @GetMapping
-    public List<Perfume> getAll() {
-        return perfumeRepository.findAll();
+    public PerfumeController(PerfumeService perfumeService) {
+        this.perfumeService = perfumeService;
     }
 
-    @GetMapping("/{id}")
-    public Perfume getById(@PathVariable Long id) {
-        return perfumeRepository.findById(id).orElse(null);
-    }
-
+    // Crear producto
     @PostMapping
-    public Perfume create(@RequestBody Perfume perfume) {
-        return perfumeRepository.save(perfume);
+    public ResponseEntity<Perfume> crear(@RequestBody Perfume perfume) {
+        return ResponseEntity.ok(perfumeService.crearPerfume(perfume));
     }
 
-    @PutMapping("/{id}")
-    public Perfume update(@PathVariable Long id, @RequestBody Perfume perfumeDetails) {
-        return perfumeRepository.findById(id).map(perfume -> {
-            perfume.setNombre(perfumeDetails.getNombre());
-            perfume.setMarca(perfumeDetails.getMarca());
-            perfume.setPrecio(perfumeDetails.getPrecio());
-            perfume.setImagen(perfumeDetails.getImagen());
-            perfume.setCategory(perfumeDetails.getCategory());
-            perfume.setAroma(perfumeDetails.getAroma());
-            perfume.setStock(perfumeDetails.getStock());
-            return perfumeRepository.save(perfume);
-        }).orElse(null);
+    // Listar productos
+    @GetMapping
+    public ResponseEntity<List<Perfume>> listar() {
+        return ResponseEntity.ok(perfumeService.listarPerfumes());
     }
 
+    // Eliminar producto (NUEVO)
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        perfumeRepository.deleteById(id);
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+        perfumeService.eliminarPerfume(id);
+        return ResponseEntity.noContent().build();
     }
 }

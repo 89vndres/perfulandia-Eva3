@@ -52,13 +52,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- VALIDACIONES (DTOs, @NotNull, etc.) -->
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
-		<!-- SEGURIDAD -->
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -91,7 +91,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- SWAGGER / OPENAPI -->
+		<!-- SWAGGER  -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -116,7 +116,7 @@
 	<build>
 		<plugins>
 
-			<!-- COMPILADOR JAVA 21 (MUY IMPORTANTE) -->
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

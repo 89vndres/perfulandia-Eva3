@@ -9,8 +9,8 @@ public class Direccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String usuarioEmail; // Para vincular con el usuario
-    private String alias; //  "Casa", "Oficina"
+    private String usuarioEmail; 
+    private String alias; 
     private String direccion;
     private String ciudad;
     private boolean predeterminada;

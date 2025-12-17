@@ -28,31 +28,39 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-            // ❌ CSRF OFF (OBLIGATORIO PARA H2)
+           
             .csrf(csrf -> csrf.disable())
 
-            // ❌ BLOQUEO DE FRAMES OFF (H2 usa iframe)
+            
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
 
-            // 🔓 AUTORIZACIONES
+            //  AUTORIZACIÓN DE RUTAS
             .authorizeHttpRequests(auth -> auth
+                // PÚBLICAS
                 .requestMatchers(
                         "/h2-console/**",
                         "/auth/**",
                         "/error"
                 ).permitAll()
-                .anyRequest().authenticated()
+
+                //   ADMIN 
+                .requestMatchers(
+                        "/api/perfumes/**"
+                ).authenticated()
+
+                // TODO LO DEMÁS
+                .anyRequest().permitAll()
             )
 
-            // 🔐 JWT → STATELESS
+            // SIN SESIÓN
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
 
-            // 🔐 AUTH PROVIDER
+            //  AUTH PROVIDER
             .authenticationProvider(authenticationProvider)
 
-            // 🔐 JWT FILTER
+            //  JWT FILTER
             .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

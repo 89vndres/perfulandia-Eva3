@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/profile")
+@RequestMapping("api/profile")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProfileController {
 
