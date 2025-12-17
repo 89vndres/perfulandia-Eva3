@@ -6,7 +6,7 @@ import styles from './ProductCard.module.css';
 export default function ProductCard({ product, onAdd, onReload }) {
     const { user, token } = useAuth();
 
-    // Verificamos si hay stock (Si es null/undefined asumimos que hay para no romper nada)
+    //stock 
     const stock = product.stock !== undefined && product.stock !== null ? product.stock : 0;
     const hasStock = stock > 0;
 

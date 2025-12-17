@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// --- IMPORTACIÓN DE COMPONENTES ---
+
 import NavBar from '../components/NavBar';
 import Home from '../pages/Home';
 import Products from '../pages/Products';
@@ -10,12 +10,12 @@ import Contact from '../pages/Contact';
 import MyOrders from '../pages/MyOrders';
 import UserProfile from '../pages/UserProfile';
 
-// Páginas de Administración
+//  Administración
 import AdminDashboard from '../pages/AdminPanel';
 import AddProduct from '../pages/AddProduct';
 import EditProduct from '../pages/EditProduct';
 
-// --- CONFIGURACIÓN DE ANIMACIONES ---
+// ANIMACIONES 
 const pageTransition = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },

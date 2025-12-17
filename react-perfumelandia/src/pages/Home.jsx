@@ -7,9 +7,8 @@ export default function Home() {
         <div style={{ backgroundColor: '#fff', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             
             <Container className={styles.heroSection}>
-                {/* === BANNERS (PARTE DE ARRIBA) === */}
+                
                 <Row>
-                    {/* Banner Grande Izquierdo */}
                     <Col lg={8}>
                         <div className={styles.mainBanner}>
                             <span className={styles.tagline}>COLECCIÓN EXCLUSIVA</span>

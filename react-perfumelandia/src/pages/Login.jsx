@@ -14,7 +14,7 @@ export default function Login() {
         e.preventDefault();
         const success = await login(email, pass);
         if (success) {
-            navigate('/productos'); // Redirigir al éxito
+            navigate('/productos'); 
         } else {
             setError('Error de credenciales. Verifica tu usuario/contraseña');
         }

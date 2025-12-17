@@ -7,10 +7,10 @@ export default function Filters({ onFilterChange, brands }) {
         onFilterChange({ type, name, value, checked });
     };
 
-    // Estilos personalizados Dark Luxury
+    
     const darkCardStyle = {
-        backgroundColor: '#1a1a1a', // Fondo oscuro
-        color: '#fff', // Texto blanco
+        backgroundColor: '#1a1a1a', 
+        color: '#fff', 
         border: '1px solid #333'
     };
 
@@ -18,8 +18,8 @@ export default function Filters({ onFilterChange, brands }) {
 
     return (
         <div className="p-3 rounded shadow-sm" style={{ 
-            backgroundColor: '#0a0a0a', // Fondo casi negro del panel
-            border: '1px solid #d4af37', // Borde fino dorado
+            backgroundColor: '#0a0a0a', 
+            border: '1px solid #d4af37', 
             color: 'white'
         }}>
             <h4 className="mb-4 text-center" style={{ 

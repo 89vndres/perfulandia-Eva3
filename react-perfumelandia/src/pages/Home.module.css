@@ -1,16 +1,15 @@
-/* --- CONTENEDOR PRINCIPAL --- */
+
 .heroSection {
     padding: 20px 0;
-    background-color: #fff; /* Fondo blanco general como la referencia */
+    background-color: #fff; 
 }
 
-/* --- BANNER GRANDE (IZQUIERDA) --- */
 .mainBanner {
-    background-color: #000000; /* Fondo Negro */
+    background-color: #000000; 
     color: white;
     border-radius: 12px;
     padding: 40px;
-    height: 500px; /* Altura fija para cuadrar con los laterales */
+    height: 500px; 
     position: relative;
     overflow: hidden;
     display: flex;
@@ -23,7 +22,7 @@
     position: absolute;
     right: 5%;
     bottom: 0;
-    height: 90%; /* La imagen sale desde abajo */
+    height: 90%; 
     object-fit: contain;
     transition: transform 0.3s ease;
 }
@@ -32,9 +31,9 @@
     transform: scale(1.05);
 }
 
-/* --- BANNERS LATERALES (DERECHA) --- */
+
 .sideBannerTop {
-    background-color: #000000; /* Celeste suave (Smart Security en la foto) */
+    background-color: #000000; 
     border-radius: 12px;
     padding: 30px;
     height: 240px;
@@ -47,7 +46,7 @@
 }
 
 .sideBannerBottom {
-    background-color: #000000; /* Beige (Galaxy S24 en la foto) */
+    background-color: #000000; 
     border-radius: 12px;
     padding: 30px;
     height: 240px;
@@ -94,7 +93,7 @@
 
 /* --- BOTONES --- */
 .btnPrimary {
-    background-color: #b4a200; /* Azul brillante como NextMerce */
+    background-color: #b4a200; 
     color: white;
     padding: 10px 25px;
     border-radius: 30px;
@@ -119,7 +118,7 @@
 
 
 
-/* --- BARRA DE SERVICIOS (ICONOS) --- */
+
 .servicesBar {
     margin-top: 40px;
     padding: 30px 0;
@@ -137,46 +136,43 @@
     color: #e7ff10;
 }
 
-/* Responsivo */
+
 @media (max-width: 992px) {
     .mainBanner { height: 400px; margin-bottom: 20px; }
     .mainBannerImg { height: 70%; opacity: 0.5; }
     .titleLarge { max-width: 100%; font-size: 2.5rem; }
 }
 
-/* --- FRANJA DIVISORIA (Línea Dorada) --- */
 .goldDivider {
     height: 1px;
-    /* Degradado para que se desvanezca en los bordes */
     background: linear-gradient(90deg, transparent, #d4af37, transparent);
-    margin: 50px 0; /* Espacio arriba y abajo */
+    margin: 50px 0; 
     opacity: 0.8;
 }
 
-/* --- SECCIÓN DE SERVICIOS (Envío Gratis, etc.) --- */
-/* Actualizamos para que tenga mejor espacio */
+
 .servicesBar {
-    padding: 20px 0 60px 0; /* Un poco de aire abajo */
+    padding: 20px 0 60px 0; 
 }
 
 .iconBox {
     font-size: 2.5rem;
-    color: #d4af37; /* Iconos dorados ahora */
+    color: #d4af37; 
     margin-bottom: 10px;
 }
 
-/* --- PIE DE PÁGINA (FOOTER) --- */
+
 .footer {
-    background-color: #050505; /* Negro profundo */
-    color: #e0e0e0; /* Texto gris claro */
+    background-color: #050505; 
+    color: #e0e0e0; 
     padding-top: 60px;
     padding-bottom: 30px;
-    border-top: 3px solid #d4af37; /* Línea dorada superior */
-    margin-top: auto; /* Empuja el footer al fondo */
+    border-top: 3px solid #d4af37; 
+    margin-top: auto; 
 }
 
 .footerTitle {
-    color: #d4af37; /* Títulos dorados */
+    color: #d4af37; 
     font-size: 1.1rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -194,7 +190,7 @@
 }
 
 .footerText:hover {
-    color: #fff; /* Al pasar el mouse se ilumina */
+    color: #fff; 
 }
 
 .socialIcon {

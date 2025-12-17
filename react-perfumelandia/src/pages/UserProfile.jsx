@@ -6,7 +6,7 @@ export default function UserProfile() {
     const { user } = useAuth();
     const goldColor = '#d4af37';
     
-    // Inicializamos como arrays vacíos para evitar errores
+   
     const [direcciones, setDirecciones] = useState([]);
     const [pagos, setPagos] = useState([]);
     const [facturacion, setFacturacion] = useState({ rut: '', giro: '', razonSocial: '' });
@@ -17,16 +17,16 @@ export default function UserProfile() {
         if (user?.email) {
             fetchData();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+       
     }, [user]);
 
     const fetchData = async () => {
         try {
-            // Función auxiliar para evitar que un error rompa toda la página
+           
             const safeRequest = async (url) => {
                 try {
                     const res = await fetch(url);
-                    if (!res.ok) return []; // Si falla, devuelve array vacío
+                    if (!res.ok) return []; 
                     const data = await res.json();
                     return data;
                 } catch (err) {
@@ -60,7 +60,7 @@ export default function UserProfile() {
         }
     };
 
-    // --- HANDLERS ---
+   
 
     const handleSaveAddress = async (e) => {
         e.preventDefault();

@@ -10,7 +10,6 @@ export default function Products() {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     
-    // Estados para filtros
     const [activeFilters, setActiveFilters] = useState({
         genders: [], brands: [], aromas: [], maxPrice: null
     });
