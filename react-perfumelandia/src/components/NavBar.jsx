@@ -55,13 +55,13 @@ function NavBar(){
                         })}
                     </Nav>
 
-                    <Nav className="align-items-center gap-3">
+                   <Nav className="align-items-center gap-3">
+                        
                         {user && user.role === 'admin' && (
                             <Link to="/admin" className="text-decoration-none">
                                 <Badge style={{ backgroundColor: 'transparent', border: `1px solid ${goldColor}`, color: goldColor, cursor: 'pointer', borderRadius: '20px', padding: '5px 10px' }}>⚙️ Panel Admin</Badge>
                             </Link>
                         )}
-
                         <Nav.Link onClick={() => setShowCart(true)} style={{ cursor: 'pointer', position: 'relative' }}>
                             <span style={{ fontSize: '1.2rem' }}>🛒</span>
                             {cartCount > 0 && (

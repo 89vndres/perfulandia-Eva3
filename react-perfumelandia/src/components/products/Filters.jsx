@@ -1,13 +1,14 @@
 import { Form, Accordion, Button } from 'react-bootstrap';
 
-export default function Filters({ onFilterChange, brands }) {
+
+export default function Filters({ onFilterChange, brands, onClear }) {
     
     const handleChange = (e, type) => {
         const { name, value, checked } = e.target;
+        
         onFilterChange({ type, name, value, checked });
     };
 
-    
     const darkCardStyle = {
         backgroundColor: '#1a1a1a', 
         color: '#fff', 
@@ -33,7 +34,7 @@ export default function Filters({ onFilterChange, brands }) {
             
             <Accordion defaultActiveKey={['0']} alwaysOpen data-bs-theme="dark">
                 
-                {/* --- FILTRO GÉNERO --- */}
+                {/* --- GÉNERO --- */}
                 <Accordion.Item eventKey="0" style={darkCardStyle}>
                     <Accordion.Header>Género</Accordion.Header>
                     <Accordion.Body>
@@ -43,6 +44,7 @@ export default function Filters({ onFilterChange, brands }) {
                                 type="checkbox" 
                                 label={g} 
                                 name={g} 
+                                
                                 onChange={(e) => handleChange(e, 'gender')}
                                 style={{ marginBottom: '8px' }}
                             />
@@ -50,7 +52,7 @@ export default function Filters({ onFilterChange, brands }) {
                     </Accordion.Body>
                 </Accordion.Item>
 
-                {/* --- FILTRO PRECIO --- */}
+                {/* --- PRECIO --- */}
                 <Accordion.Item eventKey="1" style={darkCardStyle}>
                     <Accordion.Header>Precio Máximo</Accordion.Header>
                     <Accordion.Body>
@@ -58,13 +60,14 @@ export default function Filters({ onFilterChange, brands }) {
                         <Form.Control 
                             type="number" 
                             placeholder="Ej: 50000" 
+                            
                             onChange={(e) => handleChange(e, 'priceMax')} 
                             style={{ backgroundColor: '#333', color: 'white', borderColor: '#555' }}
                         />
                     </Accordion.Body>
                 </Accordion.Item>
 
-                {/* --- FILTRO MARCA --- */}
+                {/* --- MARCA --- */}
                 <Accordion.Item eventKey="2" style={darkCardStyle}>
                     <Accordion.Header>Marca</Accordion.Header>
                     <Accordion.Body>
@@ -74,6 +77,7 @@ export default function Filters({ onFilterChange, brands }) {
                                 type="checkbox" 
                                 label={brand} 
                                 name={brand} 
+                                // type='brand'
                                 onChange={(e) => handleChange(e, 'brand')} 
                                 style={{ marginBottom: '5px' }}
                             />
@@ -81,7 +85,7 @@ export default function Filters({ onFilterChange, brands }) {
                     </Accordion.Body>
                 </Accordion.Item>
 
-                {/* --- FILTRO AROMA --- */}
+                {/* --- AROMA --- */}
                 <Accordion.Item eventKey="3" style={darkCardStyle}>
                     <Accordion.Header>Aroma</Accordion.Header>
                     <Accordion.Body>
@@ -91,6 +95,7 @@ export default function Filters({ onFilterChange, brands }) {
                                 type="checkbox" 
                                 label={a} 
                                 name={a} 
+                                // type='aroma'
                                 onChange={(e) => handleChange(e, 'aroma')} 
                                 style={{ marginBottom: '5px' }}
                              />
@@ -103,7 +108,7 @@ export default function Filters({ onFilterChange, brands }) {
             <Button 
                 variant="outline-warning" 
                 className="w-100 mt-4" 
-                onClick={() => window.location.reload()}
+                onClick={onClear} 
                 style={{ 
                     borderColor: '#d4af37', 
                     color: '#d4af37',

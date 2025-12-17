@@ -12,6 +12,7 @@ import UserProfile from '../pages/UserProfile';
 
 //  Administración
 import AdminDashboard from '../pages/AdminPanel';
+
 import AddProduct from '../pages/AddProduct';
 import EditProduct from '../pages/EditProduct';
 
@@ -44,6 +45,7 @@ function AnimatedRoutes() {
                 
                 {/* === RUTAS PÚBLICAS === */}
                 <Route path="/" element={<Page><Home /></Page>} />
+                
                 <Route path="/login" element={<Page><Login /></Page>} />
                 <Route path="/productos" element={<Page><Products /></Page>} />
                 <Route path="/contacto" element={<Page><Contact /></Page>} />
