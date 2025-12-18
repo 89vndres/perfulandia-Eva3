@@ -30,7 +30,18 @@ public class PerfumeController {
         return ResponseEntity.ok(perfumeService.listarPerfumes());
     }
 
-    // Eliminar producto (NUEVO)
+    // Actualizar Stock (NUEVO)
+    @PutMapping("/{id}/stock")
+    public ResponseEntity<?> actualizarStock(@PathVariable Long id, @RequestParam int cantidad) {
+        try {
+            Perfume actualizado = perfumeService.actualizarStock(id, cantidad);
+            return ResponseEntity.ok(actualizado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al actualizar stock: " + e.getMessage());
+        }
+    }
+
+    // Eliminar producto
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         perfumeService.eliminarPerfume(id);
