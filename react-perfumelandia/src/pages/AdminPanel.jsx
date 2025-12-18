@@ -62,9 +62,7 @@ export default function AdminPanel() {
     const cargarEstadisticas = async () => {
         setLoading(true);
         try {
-            // NOTA: Asegúrate de que tu OrdenController responda en /ordenes
             const resPedidos = await fetch('http://localhost:8080/ordenes', { headers: getHeaders() });
-            // CORREGIDO: URL sin /api
             const resProductos = await fetch('http://localhost:8080/perfumes', { headers: getHeaders() });
 
             const pedidosData = resPedidos.ok ? await resPedidos.json() : [];
@@ -92,7 +90,6 @@ export default function AdminPanel() {
         setLoading(true);
         setError('');
         try {
-            // CORREGIDO: URL sin /api
             const res = await fetch('http://localhost:8080/perfumes', { headers: getHeaders() });
             if (!res.ok) {
                 const errMsg = await res.text();
@@ -123,7 +120,6 @@ export default function AdminPanel() {
     const handleCrearPerfume = async (e) => {
         e.preventDefault();
         try {
-            // CORREGIDO: URL sin /api
             const res = await fetch('http://localhost:8080/perfumes', {
                 method: 'POST',
                 headers: getHeaders(),
@@ -151,7 +147,7 @@ export default function AdminPanel() {
                 genero: 'hombre',
                 aroma: 'citrico'
             });
-            cargarProductos(); // Recargamos la lista
+            cargarProductos();
         } catch (err) {
             setError('Error al crear el perfume: ' + err.message);
         }
@@ -160,9 +156,7 @@ export default function AdminPanel() {
     const handleEliminar = async (id) => {
         if (!window.confirm('¿Eliminar este perfume permanentemente?')) return;
         
-        // CORREGIDO: Lógica de eliminación optimista
         try {
-            // URL corregida: http://localhost:8080/perfumes/${id}
             const res = await fetch(`http://localhost:8080/perfumes/${id}`, {
                 method: 'DELETE',
                 headers: getHeaders()
@@ -170,12 +164,42 @@ export default function AdminPanel() {
 
             if (!res.ok) throw new Error('Error al eliminar');
             
-            // ACTUALIZACIÓN VISUAL: Filtramos la lista localmente para que desaparezca al instante
             setProductos(prevProductos => prevProductos.filter(p => p.id !== id));
             
         } catch (err) {
             console.error(err);
             setError('Error al eliminar el producto. Verifica la conexión.');
+        }
+    };
+
+    // --- NUEVA FUNCIÓN: EDITAR STOCK ---
+    const handleEditarStock = async (producto) => {
+        const nuevoStock = window.prompt(`Editar Stock para: ${producto.nombre}\nActual: ${producto.stock}`, producto.stock);
+
+        if (nuevoStock === null || nuevoStock === '') return;
+
+        if (isNaN(nuevoStock) || Number(nuevoStock) < 0) {
+            alert("Por favor ingresa un número válido mayor o igual a 0");
+            return;
+        }
+
+        try {
+            const res = await fetch(`http://localhost:8080/perfumes/${producto.id}/stock?cantidad=${nuevoStock}`, {
+                method: 'PUT',
+                headers: getHeaders()
+            });
+
+            if (res.ok) {
+                setProductos(prev => prev.map(p => 
+                    p.id === producto.id ? { ...p, stock: Number(nuevoStock) } : p
+                ));
+                alert("Stock actualizado correctamente ✅");
+            } else {
+                alert("Error al actualizar en el servidor");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Error de conexión");
         }
     };
 
@@ -296,12 +320,23 @@ export default function AdminPanel() {
                                             <td>{p.nombre}</td>
                                             <td>{p.marca}</td>
                                             <td>${parseFloat(p.precio).toLocaleString('es-CL')}</td>
-                                            <td>{p.stock}</td>
+                                            <td style={{ color: p.stock < 5 ? '#ff4444' : '#00ff88', fontWeight: 'bold' }}>
+                                                {p.stock}
+                                            </td>
                                             <td>{p.genero}</td>
                                             <td>{p.aroma}</td>
                                             <td>
+                                                <Button 
+                                                    variant="outline-warning" 
+                                                    size="sm" 
+                                                    className="me-2"
+                                                    onClick={() => handleEditarStock(p)}
+                                                    title="Editar Stock"
+                                                >
+                                                    ✏️
+                                                </Button>
                                                 <Button size="sm" variant="danger" onClick={() => handleEliminar(p.id)}>
-                                                    Eliminar
+                                                    🗑
                                                 </Button>
                                             </td>
                                         </tr>
