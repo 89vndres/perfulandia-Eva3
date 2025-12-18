@@ -77,6 +77,31 @@ Para probar las funcionalidades de administrador (como el Panel de Control y eli
 
 ---
 
+## 🔐 acceso base de datos h2
+
+Al ejecutar el backend quedara habilitado el acceso oline a la consola de h2SQL
+```bash
+http://localhost:8080/h2-console
+```
+si es primera vez en ejecutarla configurar de la siguiente manera 
+Driver Class:
+```bash
+org.h2.Driver
+```
+
+JDBC URL:
+
+```bash
+jdbc:h2:file:./data/perfulandia_db
+```
+User Name:
+```bash
+sa(default)
+```
+
+dar conectar y estaras dentro 
+
+
 ## 📂 Estructura del Proyecto
 
 * `/backend` - Código fuente de la API Java Spring Boot.
