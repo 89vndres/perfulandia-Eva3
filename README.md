@@ -50,18 +50,20 @@ Instalación manual de librerías
 Si necesitas agregar las dependencias manualmente una por una:
 
 Navegación y UI
+```bash
 npm install react-router-dom react-bootstrap bootstrap
-
+```
 Animaciones
+```bash
 npm install framer-motion
-
+```
 
 ▶️ Ejecutar el Proyecto
 
 Para iniciar el servidor de desarrollo local:
-
+```bash
 npm start
-
+```
 4.  El navegador se abrirá automáticamente en: `http://localhost:3000`
 
 ---
