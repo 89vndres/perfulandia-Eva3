@@ -109,4 +109,4 @@ dar conectar y estaras dentro
 
 ---
 
-**Desarrollado por:** Roberto Palma y Camila Ibarra
+**Desarrollado por:** Roberto Palma 
